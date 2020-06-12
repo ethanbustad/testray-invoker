@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: © 2018 Liferay, Inc. <https://liferay.com>
+ * SPDX-License-Identifier: MIT
+ */
+
 package com.liferay.osb.testray.invoker;
 
 import java.io.IOException;
