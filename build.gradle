@@ -1,0 +1,37 @@
+apply plugin: 'application'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'org.json:json:20140107'
+}
+
+mainClassName = 'com.liferay.osb.testray.invoker.TestrayInvoker'
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'com.liferay.osb.testray.invoker.TestrayInvoker'
+	}
+}
+
+task publish(type: Jar) {
+	manifest {
+		attributes 'Implementation-Title': 'Testray Invoker',
+			'Implementation-Version': 0.1,
+			'Main-Class': 'com.liferay.osb.testray.invoker.TestrayInvoker'
+	}
+	baseName = project.name + '-all'
+	destinationDir = new java.io.File('publish')
+	from {
+		configurations.compile.collect {
+			it.isDirectory() ? it : zipTree(it)
+		}
+	}
+	with jar
+}
+
+run {
+	standardInput = System.in
+}
